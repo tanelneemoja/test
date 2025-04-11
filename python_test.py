@@ -2,17 +2,17 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.options import Options  # Importing options for headless mode
+from selenium.webdriver.firefox.options import Options  # Importing options for headless mode
 import time
 
-# Set up Chrome options to run headless (without a GUI)
-chrome_options = Options()
-chrome_options.add_argument("--headless")  # Ensure the browser is headless
-chrome_options.add_argument("--no-sandbox")  # Disables the sandbox for CI environments
-chrome_options.add_argument("--disable-dev-shm-usage")  # To avoid issues on CI servers
+# Set up Firefox options to run headless (without a GUI)
+firefox_options = Options()
+firefox_options.add_argument("--headless")  # Ensure the browser is headless
+firefox_options.add_argument("--no-sandbox")  # Disables the sandbox for CI environments
+firefox_options.add_argument("--disable-dev-shm-usage")  # To avoid issues on CI servers
 
-# Initialize the Chrome WebDriver with headless options
-driver = webdriver.Chrome(options=chrome_options)  # No need for the path if chromedriver is in PATH
+# Initialize the Firefox WebDriver with headless options
+driver = webdriver.Firefox(options=firefox_options)  # No need for the path if geckodriver is in PATH
 
 # Open the Ads Transparency Center page for seb.ee in Estonia
 url = "https://adstransparency.google.com/?region=EE&domain=seb.ee"
