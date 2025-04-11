@@ -45,7 +45,7 @@ jobs:
         echo "ChromeDriver major version: $CHROME_DRIVER_VERSION"
         
         # Download ChromeDriver matching the major version of Chrome
-        wget https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}.0/chromedriver_linux64.zip
+        wget https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip
 
         # Unzip and move ChromeDriver to /usr/local/bin
         unzip chromedriver_linux64.zip
