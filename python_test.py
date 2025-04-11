@@ -64,7 +64,7 @@ scrape_ads()
 while True:
     try:
         # Wait for the "See all ads" button to be clickable
-        see_all_button = WebDriverWait(driver, 10).until(
+        see_all_button = WebDriverWait(driver, 20).until(
             EC.element_to_be_clickable((By.XPATH, '//div[text()="See all ads"]'))  # Adjust the XPath if necessary
         )
 
@@ -75,14 +75,18 @@ while True:
         driver.execute_script("arguments[0].click();", see_all_button)
 
         # Wait for the new ads to load
-        time.sleep(5)
-        
+        WebDriverWait(driver, 20).until(
+            EC.presence_of_element_located((By.TAG_NAME, 'creative-preview'))  # Wait for ad elements to appear
+        )
+
         # Scrape the newly loaded ads
         scrape_ads()
 
         # Scroll down further to load more ads (5000 pixels)
         driver.execute_script("window.scrollBy(0, 5000);")  # Scroll down by 5000 pixels
-        time.sleep(5)  # Wait for ads to load after scrolling
+        WebDriverWait(driver, 20).until(
+            EC.presence_of_element_located((By.TAG_NAME, 'creative-preview'))  # Wait for ads to load after scrolling
+        )
 
     except Exception as e:
         # If no "See all ads" button is found or an error occurs, stop the loop
