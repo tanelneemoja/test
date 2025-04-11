@@ -48,3 +48,9 @@ jobs:
     - name: Run tests
       run: |
         python python_test.py
+
+    - name: Upload Excel file as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: ad-results
+        path: ad_results.xlsx
