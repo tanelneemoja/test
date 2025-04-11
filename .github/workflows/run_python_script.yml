@@ -26,8 +26,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install selenium
     
-    - name: Set up Google Chrome and ChromeDriver
-      uses: google-chrome/setup-chromedriver@v1
+    - name: Set up Google Chrome
+      uses: browser-actions/setup-chrome@v1
+      with:
+        chrome-version: latest
+    
+    - name: Set up ChromeDriver
+      uses: browser-actions/setup-chromedriver@v1
       with:
         chromedriver-version: latest
     
