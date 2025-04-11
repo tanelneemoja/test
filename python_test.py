@@ -64,6 +64,10 @@ while True:
         # Scrape the newly loaded ads
         scrape_ads()
 
+        # Scroll down a bit to load more ads (ensure infinite scroll behavior)
+        driver.execute_script("window.scrollBy(0, 1000);")
+        time.sleep(3)  # Wait for ads to load after scrolling
+
     except Exception as e:
         # If no "See all ads" button is found or an error occurs, stop the loop
         print("No more ads to load or error: ", e)
