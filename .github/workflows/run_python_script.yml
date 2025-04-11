@@ -38,16 +38,18 @@ jobs:
         echo "Chrome version: $CHROME_VERSION"
         echo "CHROME_VERSION=$CHROME_VERSION" >> $GITHUB_ENV
 
-    - name: Download ChromeDriver
+    - name: Remove any existing ChromeDriver to avoid version conflict
       run: |
-        # Fetch the latest stable ChromeDriver version for the matching Chrome version
-        LATEST_DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
-        echo "Latest ChromeDriver version: $LATEST_DRIVER_VERSION"
+        sudo rm -f /usr/local/bin/chromedriver
+    
+    - name: Fetch the correct version of ChromeDriver
+      run: |
+        # Fetch the version of ChromeDriver that matches the installed Chrome version
+        VERSION="135.0.7049.84"  # Chrome version 135.x requires this driver
+        echo "Downloading ChromeDriver version: $VERSION"
+        wget https://chromedriver.storage.googleapis.com/${VERSION}/chromedriver_linux64.zip
         
-        # Download the latest ChromeDriver for the version installed
-        wget https://chromedriver.storage.googleapis.com/${LATEST_DRIVER_VERSION}/chromedriver_linux64.zip
-        
-        # Unzip and move ChromeDriver to /usr/local/bin
+        # Unzip and install the correct ChromeDriver
         unzip chromedriver_linux64.zip
         sudo mv chromedriver /usr/local/bin/
         sudo chmod +x /usr/local/bin/chromedriver
