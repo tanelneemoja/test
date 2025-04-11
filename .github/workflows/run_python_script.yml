@@ -26,25 +26,28 @@ jobs:
         python -m pip install --upgrade pip
         pip install selenium
     
-    - name: Set up Google Chrome (Version 114)
-      uses: browser-actions/setup-chrome@v1
-      with:
-        chrome-version: '114'
-    
-    - name: Get Chrome version
+    - name: Remove existing Google Chrome installation
       run: |
-        # Get the installed version of Google Chrome
-        CHROME_VERSION=$(google-chrome --version | awk '{print $3}')
-        echo "Chrome version: $CHROME_VERSION"
-        echo "CHROME_VERSION=$CHROME_VERSION" >> $GITHUB_ENV
-
-    - name: Remove any existing ChromeDriver to avoid version conflict
+        sudo apt-get remove -y google-chrome-stable
+    
+    - name: Remove existing ChromeDriver to avoid version conflict
       run: |
         sudo rm -f /usr/local/bin/chromedriver
+
+    - name: Install Google Chrome version 114
+      run: |
+        # Install Google Chrome 114 version
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo apt install ./google-chrome-stable_current_amd64.deb
     
+    - name: Verify Chrome version
+      run: |
+        # Verify the installed Chrome version
+        google-chrome --version
+
     - name: Fetch the correct version of ChromeDriver (114.x)
       run: |
-        # Use ChromeDriver for Chrome version 114.x
+        # Fetch the correct ChromeDriver for Chrome version 114.x
         VERSION="114.0.5735.90"  # Chrome version 114.x requires this driver
         echo "Downloading ChromeDriver version: $VERSION"
         wget https://chromedriver.storage.googleapis.com/${VERSION}/chromedriver_linux64.zip
@@ -53,8 +56,7 @@ jobs:
         unzip chromedriver_linux64.zip
         sudo mv chromedriver /usr/local/bin/
         sudo chmod +x /usr/local/bin/chromedriver
-    
+
     - name: Run tests
       run: |
         python python_test.py
- 
