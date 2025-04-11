@@ -1,4 +1,4 @@
-name: Python Selenium Script
+name: Selenium Test
 
 on:
   push:
@@ -9,38 +9,28 @@ on:
       - main
 
 jobs:
-  selenium-script:
+  selenium-test:
     runs-on: ubuntu-latest
-
+    
     steps:
-    - name: Checkout the repository
+    - name: Checkout repository
       uses: actions/checkout@v2
-
+    
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.8'
-
+    
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install selenium
-
-    - name: Set up ChromeDriver
+    
+    - name: Set up Google Chrome and ChromeDriver
+      uses: google-chrome/setup-chromedriver@v1
+      with:
+        chromedriver-version: latest
+    
+    - name: Run tests
       run: |
-        # Fetch the latest stable version of Chrome
-        CHROME_VERSION=$(google-chrome-stable --version | awk '{print $3}' | cut -d'.' -f1-3)
-        
-        # Get the corresponding ChromeDriver version
-        DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION})
-        
-        # Download the correct version of ChromeDriver
-        wget https://chromedriver.storage.googleapis.com/${DRIVER_VERSION}/chromedriver_linux64.zip
-        
-        # Unzip the driver
-        unzip chromedriver_linux64.zip -d $HOME/.local/bin
-        chmod +x $HOME/.local/bin/chromedriver
-
-    - name: Run the Python Script
-      run: |
-        python test/python_test.py  # Adjust the script path as needed
+        python python_test.py
