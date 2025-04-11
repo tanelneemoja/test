@@ -1,4 +1,4 @@
-name: Run Python Script on GitHub Actions
+name: Python Selenium Script
 
 on:
   push:
@@ -9,32 +9,38 @@ on:
       - main
 
 jobs:
-  run-script:
+  selenium-script:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout the repository
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt  # If you have a requirements.txt file
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install selenium
 
-      - name: Set up ChromeDriver
-        run: |
-          # Download the correct version of ChromeDriver based on Chrome version
-          CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d. -f1)
-          DRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION})
-          wget https://chromedriver.storage.googleapis.com/${DRIVER_VERSION}/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip
-          mv chromedriver /usr/local/bin/chromedriver
-          chmod +x /usr/local/bin/chromedriver
+    - name: Set up ChromeDriver
+      run: |
+        # Fetch the latest stable version of Chrome
+        CHROME_VERSION=$(google-chrome-stable --version | awk '{print $3}' | cut -d'.' -f1-3)
+        
+        # Get the corresponding ChromeDriver version
+        DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION})
+        
+        # Download the correct version of ChromeDriver
+        wget https://chromedriver.storage.googleapis.com/${DRIVER_VERSION}/chromedriver_linux64.zip
+        
+        # Unzip the driver
+        unzip chromedriver_linux64.zip -d $HOME/.local/bin
+        chmod +x $HOME/.local/bin/chromedriver
 
-      - name: Run the script
-        run: |
-          python test/python_test.py  # Adjust path if necessary
+    - name: Run the Python Script
+      run: |
+        python test/python_test.py  # Adjust the script path as needed
