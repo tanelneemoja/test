@@ -31,14 +31,21 @@ jobs:
       with:
         chrome-version: latest
     
+    - name: Get Chrome version
+      run: |
+        # Get the installed version of Google Chrome
+        CHROME_VERSION=$(google-chrome --version | awk '{print $3}')
+        echo "Chrome version: $CHROME_VERSION"
+        echo "CHROME_VERSION=$CHROME_VERSION" >> $GITHUB_ENV
+
     - name: Download ChromeDriver
       run: |
-        # Install dependencies for ChromeDriver
-        sudo apt-get install -y unzip
-
-        # Download the version of ChromeDriver matching the installed Chrome version
-        CHROME_DRIVER_VERSION=$(google-chrome --version | awk '{print $3}' | sed 's/\([0-9]*\)\.[0-9]*\.[0-9]*/\1/')
-        wget https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
+        # Fetch the version number for ChromeDriver that matches the installed Chrome version
+        CHROME_DRIVER_VERSION=$(echo $CHROME_VERSION | sed 's/\([0-9]*\)\.[0-9]*\.[0-9]*/\1/')
+        echo "ChromeDriver version: $CHROME_DRIVER_VERSION"
+        
+        # Download ChromeDriver matching the version of Chrome
+        wget https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}.0/chromedriver_linux64.zip
 
         # Unzip and move ChromeDriver to /usr/local/bin
         unzip chromedriver_linux64.zip
