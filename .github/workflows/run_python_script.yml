@@ -26,37 +26,16 @@ jobs:
         python -m pip install --upgrade pip
         pip install selenium
     
-    - name: Remove existing Google Chrome installation
+    - name: Install Firefox and Geckodriver
       run: |
-        sudo apt-get remove -y google-chrome-stable
-    
-    - name: Remove existing ChromeDriver to avoid version conflict
-      run: |
-        sudo rm -f /usr/local/bin/chromedriver
+        sudo apt update
+        sudo apt install -y firefox
+        sudo apt install -y wget
+        wget https://github.com/mozilla/geckodriver/releases/download/v0.30.0/geckodriver-v0.30.0-linux64.tar.gz
+        tar -xvzf geckodriver-v0.30.0-linux64.tar.gz
+        sudo mv geckodriver /usr/local/bin/
+        sudo chmod +x /usr/local/bin/geckodriver
 
-    - name: Install Google Chrome version 114
-      run: |
-        # Install Google Chrome 114 version
-        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        sudo apt install ./google-chrome-stable_current_amd64.deb
-    
-    - name: Verify Chrome version
-      run: |
-        # Verify the installed Chrome version
-        google-chrome --version
-
-    - name: Fetch the correct version of ChromeDriver (114.x)
-      run: |
-        # Fetch the correct ChromeDriver for Chrome version 114.x
-        VERSION="114.0.5735.90"  # Chrome version 114.x requires this driver
-        echo "Downloading ChromeDriver version: $VERSION"
-        wget https://chromedriver.storage.googleapis.com/${VERSION}/chromedriver_linux64.zip
-        
-        # Unzip and install the correct ChromeDriver
-        unzip chromedriver_linux64.zip
-        sudo mv chromedriver /usr/local/bin/
-        sudo chmod +x /usr/local/bin/chromedriver
-
-    - name: Run tests
+    - name: Run tests with Firefox
       run: |
         python python_test.py
