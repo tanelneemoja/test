@@ -51,16 +51,19 @@ while True:
         see_all_button = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, '//div[text()="See all ads"]'))  # Adjust the XPath if necessary
         )
-        
-        # Click the "See all ads" button
-        see_all_button.click()
-        
+
+        # Scroll the button into view
+        driver.execute_script("arguments[0].scrollIntoView();", see_all_button)
+
+        # Use JavaScript to click the button if the ripple effect is blocking
+        driver.execute_script("arguments[0].click();", see_all_button)
+
         # Wait for the new ads to load
         time.sleep(5)
         
         # Scrape the newly loaded ads
         scrape_ads()
-    
+
     except Exception as e:
         # If no "See all ads" button is found or an error occurs, stop the loop
         print("No more ads to load or error: ", e)
