@@ -57,24 +57,15 @@ def scrape_ads():
         except Exception as e:
             print(f"Error extracting ad data: {e}")
 
-# Scrape initial data
-scrape_ads()
+# Function to scroll until the end
+def scroll_until_end():
+    last_height = driver.execute_script("return document.body.scrollHeight")  # Get the initial height
 
-# Now we need to click the "See all ads" button and scrape additional data
-while True:
-    try:
-        # Wait for the "See all ads" button to be clickable
-        see_all_button = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((By.XPATH, '//div[text()="See all ads"]'))  # Adjust the XPath if necessary
-        )
+    while True:
+        # Scroll down by 5000 pixels
+        driver.execute_script("window.scrollBy(0, 5000);")
 
-        # Scroll the button into view
-        driver.execute_script("arguments[0].scrollIntoView();", see_all_button)
-
-        # Use JavaScript to click the button if the ripple effect is blocking
-        driver.execute_script("arguments[0].click();", see_all_button)
-
-        # Wait for the new ads to load
+        # Wait for ads to load
         WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.TAG_NAME, 'creative-preview'))  # Wait for ad elements to appear
         )
@@ -82,16 +73,18 @@ while True:
         # Scrape the newly loaded ads
         scrape_ads()
 
-        # Scroll down further to load more ads (5000 pixels)
-        driver.execute_script("window.scrollBy(0, 5000);")  # Scroll down by 5000 pixels
-        WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.TAG_NAME, 'creative-preview'))  # Wait for ads to load after scrolling
-        )
+        # Get the new height of the page
+        new_height = driver.execute_script("return document.body.scrollHeight")
 
-    except Exception as e:
-        # If no "See all ads" button is found or an error occurs, stop the loop
-        print("No more ads to load or error: ", e)
-        break
+        # If the new height is the same as the last height, stop scrolling (end of page)
+        if new_height == last_height:
+            break
+
+        # Update the last height
+        last_height = new_height
+
+# Start scraping
+scroll_until_end()
 
 # Close the WebDriver after scraping
 driver.quit()
