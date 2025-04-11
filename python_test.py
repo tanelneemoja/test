@@ -4,6 +4,15 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.firefox.options import Options  # Importing options for headless mode
 import time
+import re
+from datetime import datetime, timedelta
+
+# Calculate the dynamic start and end dates
+end_date = datetime.today().strftime('%Y-%m-%d')  # Today's date as the end date
+start_date = (datetime.today() - timedelta(days=365)).strftime('%Y-%m-%d')  # One year ago as the start date
+
+# Construct the URL with dynamic dates
+url = f"https://adstransparency.google.com/?region=EE&domain=seb.ee&start-date={start_date}&end-date={end_date}"
 
 # Set up Firefox options to run headless (without a GUI)
 firefox_options = Options()
@@ -14,8 +23,7 @@ firefox_options.add_argument("--disable-dev-shm-usage")  # To avoid issues on CI
 # Initialize the Firefox WebDriver with headless options
 driver = webdriver.Firefox(options=firefox_options)  # No need for the path if geckodriver is in PATH
 
-# Open the Ads Transparency Center page for seb.ee in Estonia
-url = "https://adstransparency.google.com/?region=EE&domain=seb.ee"
+# Open the Ads Transparency Center page for seb.ee in Estonia with dynamic dates
 driver.get(url)
 
 # Wait for the page to load
@@ -35,8 +43,16 @@ def scrape_ads():
             # Extract the link to the creative (ad details)
             creative_link = ad.find_element(By.TAG_NAME, 'a').get_attribute('href')
 
-            # Print the results
-            print(f"Advertiser: {advertiser_name}, Image URL: {image_url}, Creative Link: {creative_link}")
+            # Use regular expressions to extract the Advertiser ID and Creative ID from the URL
+            match = re.search(r'/advertiser/([^/]+)/creative/([^?]+)', creative_link)
+            if match:
+                advertiser_id = match.group(1)
+                creative_id = match.group(2)
+            else:
+                advertiser_id, creative_id = None, None
+
+            # Print the results, including the advertiser and creative IDs
+            print(f"Advertiser: {advertiser_name}, Image URL: {image_url}, Creative Link: {creative_link}, Advertiser ID: {advertiser_id}, Creative ID: {creative_id}")
         
         except Exception as e:
             print(f"Error extracting ad data: {e}")
@@ -64,9 +80,9 @@ while True:
         # Scrape the newly loaded ads
         scrape_ads()
 
-        # Scroll down a bit to load more ads (ensure infinite scroll behavior)
-        driver.execute_script("window.scrollBy(0, 1000);")
-        time.sleep(3)  # Wait for ads to load after scrolling
+        # Scroll down further to load more ads (5000 pixels)
+        driver.execute_script("window.scrollBy(0, 5000);")  # Scroll down by 5000 pixels
+        time.sleep(5)  # Wait for ads to load after scrolling
 
     except Exception as e:
         # If no "See all ads" button is found or an error occurs, stop the loop
