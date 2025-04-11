@@ -25,4 +25,4 @@ jobs:
 
     - name: Run script
       run: |
-        test/python_test.py  # Run your script (replace with your actual script location)
+       python test/python_test.py  # Run your script (replace with your actual script location)
