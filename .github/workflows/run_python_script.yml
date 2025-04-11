@@ -26,10 +26,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install selenium
     
-    - name: Set up Google Chrome
+    - name: Set up Google Chrome (Version 114)
       uses: browser-actions/setup-chrome@v1
       with:
-        chrome-version: latest
+        chrome-version: '114'
     
     - name: Get Chrome version
       run: |
@@ -42,10 +42,10 @@ jobs:
       run: |
         sudo rm -f /usr/local/bin/chromedriver
     
-    - name: Fetch the correct version of ChromeDriver
+    - name: Fetch the correct version of ChromeDriver (114.x)
       run: |
-        # Fetch the version of ChromeDriver that matches the installed Chrome version
-        VERSION="135.0.7049.84"  # Chrome version 135.x requires this driver
+        # Use ChromeDriver for Chrome version 114.x
+        VERSION="114.0.5735.90"  # Chrome version 114.x requires this driver
         echo "Downloading ChromeDriver version: $VERSION"
         wget https://chromedriver.storage.googleapis.com/${VERSION}/chromedriver_linux64.zip
         
