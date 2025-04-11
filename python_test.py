@@ -83,8 +83,24 @@ def scroll_until_end():
         # Update the last height
         last_height = new_height
 
-# Start scraping
-scroll_until_end()
+# Now we need to click the "See all ads" button and scrape additional data
+try:
+    # Wait for the "See all ads" button to be clickable
+    see_all_button = WebDriverWait(driver, 20).until(
+        EC.element_to_be_clickable((By.XPATH, '//div[text()="See all ads"]'))  # Adjust the XPath if necessary
+    )
+    
+    # Click the "See all ads" button
+    see_all_button.click()
+    
+    # Wait a bit to ensure the page loads after clicking
+    time.sleep(3)  # Adjust this wait time if necessary
+    
+    # Start scrolling and scraping ads
+    scroll_until_end()
+
+except Exception as e:
+    print("Error or no 'See all ads' button found: ", e)
 
 # Close the WebDriver after scraping
 driver.quit()
