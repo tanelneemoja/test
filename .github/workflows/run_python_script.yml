@@ -40,14 +40,13 @@ jobs:
 
     - name: Download ChromeDriver
       run: |
-        # Fetch the major version number for ChromeDriver (we're now explicitly using 137 for compatibility)
-        CHROME_DRIVER_VERSION=137
+        # Fetch the latest stable ChromeDriver version for the matching Chrome version
+        LATEST_DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
+        echo "Latest ChromeDriver version: $LATEST_DRIVER_VERSION"
         
-        echo "ChromeDriver major version: $CHROME_DRIVER_VERSION"
+        # Download the latest ChromeDriver for the version installed
+        wget https://chromedriver.storage.googleapis.com/${LATEST_DRIVER_VERSION}/chromedriver_linux64.zip
         
-        # Download ChromeDriver for the matching version of Chrome
-        wget https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip
-
         # Unzip and move ChromeDriver to /usr/local/bin
         unzip chromedriver_linux64.zip
         sudo mv chromedriver /usr/local/bin/
