@@ -1,30 +1,50 @@
-name: Selenium Firefox Test
+name: Selenium Test
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  test:
+  selenium-test:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v2
     
-    - name: Install Firefox
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y firefox
-
-    - name: Install Geckodriver
-      run: |
-        wget https://github.com/mozilla/geckodriver/releases/download/v0.32.0/geckodriver-v0.32.0-linux64.tar.gz
-        tar -xvzf geckodriver-v0.32.0-linux64.tar.gz
-        sudo mv geckodriver /usr/local/bin/
-
-    - name: Install Python dependencies
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    
+    - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install selenium
+    
+    - name: Remove existing Google Chrome installation
+      run: |
+        sudo apt-get remove -y google-chrome-stable
+    
+    - name: Install Google Chrome version 114.x
+      run: |
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo apt install ./google-chrome-stable_current_amd64.deb
 
-    - name: Run Selenium test
-      run: python python_test.py
+    - name: Install ChromeDriver 114.x
+      run: |
+        # Install ChromeDriver 114.x (compatible with Chrome 114.x)
+        VERSION="114.0.5735.90"
+        echo "Downloading ChromeDriver version: $VERSION"
+        wget https://chromedriver.storage.googleapis.com/${VERSION}/chromedriver_linux64.zip
+        unzip chromedriver_linux64.zip
+        sudo mv chromedriver /usr/local/bin/
+        sudo chmod +x /usr/local/bin/chromedriver
+
+    - name: Run tests
+      run: |
+        python python_test.py
