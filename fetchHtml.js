@@ -2,7 +2,7 @@ const axios = require('axios');
 const fs = require('fs');
 
 // URL of the website you want to scrape
-const url = 'https://example.com';
+const url = 'https://www.essencemediacom.ee';
 
 axios.get(url)
   .then(response => {
