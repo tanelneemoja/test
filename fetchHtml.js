@@ -6,9 +6,8 @@ const url = 'https://www.essencemediacom.ee';
 
 axios.get(url)
   .then(response => {
-    // Save the HTML to a file
-    fs.writeFileSync('website.html', response.data);
-    console.log('Website HTML fetched and saved!');
+    // Print the HTML content to the logs
+    console.log(response.data); 
   })
   .catch(error => {
     console.error('Error fetching website HTML:', error);
