@@ -22,19 +22,21 @@ jobs:
       run: playwright install --with-deps chromium
 
     - name: Install dependencies
-      run: pip install -r requirements.txt # Now just 'requirements.txt'
+      run: pip install -r requirements.txt
 
     - name: Run ad scraper
       env:
-        KEYWORDS_JSON: ${{ secrets.KEYWORDS_JSON }}
-        OUTPUT_FILE: ${{ secrets.OUTPUT_FILE }}
-        HEADLESS: ${{ secrets.HEADLESS }}
-        MAX_ADS_PER_PAGE: ${{ secrets.MAX_ADS_PER_PAGE }}
-        DELAY_BETWEEN_SEARCHES_SECONDS: ${{ secrets.DELAY_BETWEEN_SEARCHES_SECONDS }}
-        PROXY_SERVER: ${{ secrets.PROXY_SERVER }}
-        PROXY_USERNAME: ${{ secrets.PROXY_USERNAME }}
-        PROXY_PASSWORD: ${{ secrets.PROXY_PASSWORD }}
-      run: python scrape_ads.py # Now just 'scrape_ads.py'
+        # IMPORTANT: These keywords are for the GitHub Actions environment.
+        # Make sure this JSON string is correctly formatted.
+        KEYWORDS_JSON: '["elekter", "elektrileping", "elektripaketid", "elektribörs", "börsielekter", "elektri börsihind", "elektri paketid", "elektrimüüjad"]'
+        OUTPUT_FILE: competitor_ads.json
+        HEADLESS: true
+        MAX_ADS_PER_PAGE: 5
+        DELAY_BETWEEN_SEARCHES_SECONDS: 10
+        PROXY_SERVER: ${{ secrets.PROXY_SERVER }} # Your proxy server address (e.g., http://your_proxy_ip:port)
+        PROXY_USERNAME: ${{ secrets.PROXY_USERNAME }} # Your proxy username (if applicable)
+        PROXY_PASSWORD: ${{ secrets.PROXY_PASSWORD }} # Your proxy password (if applicable)
+      run: python scrape_ads.py
 
     - name: Commit results
       uses: stefanzweifel/git-auto-commit-action@v5
