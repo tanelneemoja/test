@@ -17,10 +17,13 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Firefox and dependencies
+      - name: Install Firefox latest
         run: |
-          sudo apt-get update
-          sudo apt-get install -y firefox-esr libgtk-3-0 libdbus-glib-1-2 libxt6 libx11-xcb1 libxcb1 libdbus-1-3 libxcomposite1 libxdamage1 libxrandr2 libasound2 libpangocairo-1.0-0
+         wget -q https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US -O firefox.tar.bz2
+         tar xjf firefox.tar.bz2
+         sudo mv firefox /opt/firefox
+         sudo ln -sf /opt/firefox/firefox /usr/local/bin/firefox
+         firefox --version
 
       - name: Install Geckodriver v0.36.0
         run: |
