@@ -1,7 +1,9 @@
 name: Scrape Estonian Search Ads
 
 on:
-  workflow_dispatch:
+  push:
+    paths:
+      - 'scrape_ads.py'
 
 jobs:
   scrape:
