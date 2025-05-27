@@ -7,7 +7,7 @@ KEYWORDS = [
     "elekter", "elektrileping", "elektripaketid", "elektribörs",
     "börsielekter", "elektri börsihind", "elektri paketid", "elektrimüüjad"
 ]
- 
+  
 def setup_driver():
     options = Options()
     options.add_argument("--headless")
