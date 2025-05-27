@@ -123,3 +123,16 @@ def main():
 
 if __name__ == "__main__":
     main()
+     print("\n\n=== ALL ADS RESULTS ===\n")
+    for kw, ads_data in all_ads.items():
+        print(f"Keyword: {kw}")
+        print("Google Ads:")
+        for ad in ads_data["google"]:
+            print(ad)
+            print("---")
+        print("Bing Ads:")
+        for ad in ads_data["bing"]:
+            print(ad)
+            print("---")
+        print("\n")
+
