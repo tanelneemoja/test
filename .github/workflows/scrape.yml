@@ -19,19 +19,20 @@ jobs:
 
       - name: Install Firefox latest
         run: |
-         wget -q https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US -O firefox.tar.bz2
-         tar xjf firefox.tar.bz2
-         sudo mv firefox /opt/firefox
-         sudo ln -sf /opt/firefox/firefox /usr/local/bin/firefox
-         firefox --version
+          wget -q "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US" -O firefox.tar.bz2
+          tar -xjf firefox.tar.bz2
+          sudo mv firefox /opt/firefox
+          sudo ln -sf /opt/firefox/firefox /usr/local/bin/firefox
+          firefox --version
 
       - name: Install Geckodriver v0.36.0
         run: |
           GECKO_VERSION="v0.36.0"
-          wget https://github.com/mozilla/geckodriver/releases/download/$GECKO_VERSION/geckodriver-$GECKO_VERSION-linux64.tar.gz
+          wget "https://github.com/mozilla/geckodriver/releases/download/$GECKO_VERSION/geckodriver-$GECKO_VERSION-linux64.tar.gz"
           tar -xvzf geckodriver-$GECKO_VERSION-linux64.tar.gz
           sudo mv geckodriver /usr/local/bin/
           sudo chmod +x /usr/local/bin/geckodriver
+          geckodriver --version
 
       - name: Install Python dependencies
         run: pip install selenium
