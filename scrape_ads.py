@@ -9,7 +9,7 @@ KEYWORDS = [
     "börsielekter", "elektri börsihind", "elektri paketid", "elektrimüüjad"
 ]
 OUTPUT_FILE = "results.csv"
-
+ 
 def setup_driver():
     options = Options()
     options.add_argument("--headless=new")
