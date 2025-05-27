@@ -2,8 +2,12 @@ name: Scrape Search Ads
 
 on:
   workflow_dispatch: # Allows manual triggering
+  push:
+    paths:
+      - 'scrape_ads.py' # This specifies that the workflow runs ONLY when scrape_ads.py is changed
+      - 'requirements.txt' # It's good practice to also include requirements.txt if changes there impact the script
   schedule:
-    - cron: '0 0 * * *' # Runs daily at midnight UTC (adjust as needed for EEST)
+    - cron: '0 0 * * *' # Runs daily at midnight UTC
 
 jobs:
   scrape:
@@ -26,21 +30,19 @@ jobs:
 
     - name: Run ad scraper
       env:
-        # IMPORTANT: These keywords are for the GitHub Actions environment.
-        # Make sure this JSON string is correctly formatted.
         KEYWORDS_JSON: '["elekter", "elektrileping", "elektripaketid", "elektribörs", "börsielekter", "elektri börsihind", "elektri paketid", "elektrimüüjad"]'
         OUTPUT_FILE: competitor_ads.json
         HEADLESS: true
         MAX_ADS_PER_PAGE: 5
         DELAY_BETWEEN_SEARCHES_SECONDS: 10
-        PROXY_SERVER: ${{ secrets.PROXY_SERVER }} # Your proxy server address (e.g., http://your_proxy_ip:port)
-        PROXY_USERNAME: ${{ secrets.PROXY_USERNAME }} # Your proxy username (if applicable)
-        PROXY_PASSWORD: ${{ secrets.PROXY_PASSWORD }} # Your proxy password (if applicable)
+        PROXY_SERVER: ${{ secrets.PROXY_SERVER }}
+        PROXY_USERNAME: ${{ secrets.PROXY_USERNAME }}
+        PROXY_PASSWORD: ${{ secrets.PROXY_PASSWORD }}
       run: python scrape_ads.py
 
     - name: Commit results
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
         commit_message: "Automated ad scraping results"
-        file_pattern: competitor_ads.json # This file will be in the root
-        branch: main # Or your desired branch
+        file_pattern: competitor_ads.json
+        branch: main
