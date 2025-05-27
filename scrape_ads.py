@@ -23,7 +23,7 @@ def setup_driver():
     options.add_argument('--disable-gpu')
     driver = webdriver.Firefox(options=options)
     return driver
-
+ 
 def is_ad_text(text):
     if not text:
         return False
