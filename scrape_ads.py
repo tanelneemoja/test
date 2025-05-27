@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 import time
-
+ 
 KEYWORDS = [
     "elekter", "elektrileping", "elektripaketid", "elektribörs",
     "börsielekter", "elektri börsihind", "elektri paketid", "elektrimüüjad",
