@@ -37,7 +37,7 @@ jobs:
         run: python scrape_ads.py
 
       - name: Upload results artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: ads-results
           path: ads_results.txt
