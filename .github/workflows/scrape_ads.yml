@@ -1,41 +1,38 @@
-name: Scrape Ads
+name: Scrape Estonian Search Ads
 
 on:
-  push:
-    paths:
-      - 'scrape_ads.py'
+  workflow_dispatch:
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      - name: Install Firefox latest
+      - name: Install Firefox
         run: |
-          wget -q "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US" -O firefox.tar.bz2
-          tar -xjf firefox.tar.bz2
-          sudo mv firefox /opt/firefox
-          sudo ln -sf /opt/firefox/firefox /usr/local/bin/firefox
-          firefox --version
+          sudo apt-get update
+          sudo apt-get install -y firefox
 
-      - name: Install Geckodriver v0.36.0
+      - name: Install Geckodriver
         run: |
           GECKO_VERSION="v0.36.0"
           wget "https://github.com/mozilla/geckodriver/releases/download/$GECKO_VERSION/geckodriver-$GECKO_VERSION-linux64.tar.gz"
           tar -xvzf geckodriver-$GECKO_VERSION-linux64.tar.gz
           sudo mv geckodriver /usr/local/bin/
-          sudo chmod +x /usr/local/bin/geckodriver
           geckodriver --version
 
       - name: Install Python dependencies
-        run: pip install selenium
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Run scraper and output results
+      - name: Run scraper
         run: python scrape_ads.py
