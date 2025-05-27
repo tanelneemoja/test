@@ -14,7 +14,7 @@ KEYWORDS = [
 
 # Ad indicators (Estonian + English)
 AD_INDICATORS = ['Reklaam', 'Sponsoreeritud', 'Sponsitud', 'Ad', 'Sponsored']
- 
+  
 def setup_driver():
     options = Options()
     options.add_argument('--headless')
