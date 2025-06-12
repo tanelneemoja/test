@@ -1,0 +1,42 @@
+name: Scrape Prisma Market Daily
+
+on:
+  schedule:
+    # Runs daily at 02:00 UTC (which is 5 AM EEST / UTC+3)
+    - cron: '0 2 * * *'
+  workflow_dispatch: # Allows you to manually trigger the workflow from the GitHub UI
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest # Use a Linux environment provided by GitHub Actions
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4 # Get your repository code
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.9' # Specify your preferred Python version
+
+    - name: Install Playwright and dependencies
+      run: |
+        pip install playwright
+        playwright install chromium # Install the Chromium browser (or firefox, webkit)
+
+    - name: Run scraping script
+      run: python scrape_prisma.py # Execute your Python script
+
+    - name: Commit and push scraped data
+      # This step commits the changes made by the Python script (the CSV file)
+      # back to the repository.
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add prisma_products.csv # Add the generated CSV file
+        git commit -m "Automated: Update Prisma Market products data" || echo "No changes to commit"
+        git push
+      env:
+        # GITHUB_TOKEN is a special token automatically provided by GitHub Actions
+        # It has permissions to push to the repository where the workflow is running.
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
