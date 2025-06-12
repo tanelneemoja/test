@@ -3,7 +3,7 @@ from playwright.async_api import async_playwright
 import csv
 import re
 from datetime import datetime
-
+ 
 async def scrape_prisma_market():
     url = "https://www.prismamarket.ee/leht/nadala-hind"
     output_filename = "prisma_products.csv" # Name of the CSV file to create
