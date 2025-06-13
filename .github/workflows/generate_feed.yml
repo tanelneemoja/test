@@ -1,0 +1,46 @@
+# .github/workflows/generate_feed.yml
+name: Generate Cropink XML Feed
+
+on:
+  schedule:
+    # Runs the workflow every 3 hours (at minute 0 of every 3rd hour) in UTC.
+    # This translates to:
+    # 00:00, 03:00, 06:00, 09:00, 12:00, 15:00, 18:00, 21:00 UTC
+    # Which corresponds to:
+    # 03:00, 06:00, 09:00, 12:00, 15:00, 18:00, 21:00, 00:00 (next day) Estonia Time (EEST / UTC+3).
+    - cron: '0 */3 * * *' 
+  push:
+    paths:
+      - 'prisma_products.csv' # Trigger the workflow when prisma_products.csv changes
+  workflow_dispatch: # This allows you to manually trigger the workflow from the GitHub Actions tab
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # The operating system environment for the job
+    steps:
+    - name: Checkout repository # Step to get your code from the repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python # Step to ensure Python 3 is available
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies # Installs necessary Python libraries (none extra for this script)
+      run: |
+        python -m pip install --upgrade pip
+        # No additional libraries are needed for this script as 'csv', 'xml.etree.ElementTree',
+        # and 'xml.dom.minidom' are part of Python's standard library.
+
+    - name: Generate XML feed # Executes your Python script
+      run: python generate_xml_feed.py
+
+    - name: Commit and push XML feed # Commits the newly generated XML back to your repository
+      run: |
+        git config user.name "github-actions[bot]" # Configures the commit author
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add cropink_feed.xml # Adds the generated XML file to staging
+        git commit -m "Automated: Generate Cropink XML feed" || echo "No changes to commit" # Commits changes if any
+        git push # Pushes the commit to your repository
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Automatically provided by GitHub for secure pushing
