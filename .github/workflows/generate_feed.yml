@@ -6,7 +6,7 @@ on:
     # Runs the workflow every 3 hours (at minute 0 of every 3rd hour) in UTC.
     # This corresponds to 03:00, 06:00, 09:00, 12:00, 15:00, 18:00, 21:00, 00:00 (next day) Estonia Time (EEST / UTC+3).
     - cron: '0 */3 * * *' 
-  push: # <--- THIS IS THE CHANGE: Trigger on ANY push to the repository
+  push: 
     branches:
       - main # Or 'master', depending on your default branch name
   workflow_dispatch: # Allows manual trigger from GitHub Actions tab
@@ -14,6 +14,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    # ADD THESE PERMISSIONS HERE!
+    permissions:
+      contents: write # This grants write access to the GITHUB_TOKEN for this job
+    
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
