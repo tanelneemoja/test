@@ -2,7 +2,9 @@ name: Scrape Prisma Market Daily
 
 on:
   schedule:
-    - cron: '0 2 * * *' # Runs daily at 02:00 UTC (5 AM EEST)
+    # Runs every three hours (00:00, 03:00, 06:00, ..., 21:00 UTC)
+    # This translates to 03:00, 06:00, 09:00, ..., 00:00 EEST (UTC+3)
+    - cron: '0 */3 * * *'
   workflow_dispatch:
   push:
     branches:
@@ -11,10 +13,8 @@ on:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    # --- ADD THIS PERMISSIONS BLOCK ---
     permissions:
-      contents: write # This grants write access to the repository's contents
-    # ---------------------------------
+      contents: write 
 
     steps:
     - name: Checkout code
