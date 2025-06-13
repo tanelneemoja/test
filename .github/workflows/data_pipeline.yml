@@ -1,5 +1,5 @@
 # .github/workflows/data_pipeline.yml
-name: Automated Product Data Pipeline
+name: Automated Product Data Pipelines (CSV & XML)
 
 on:
   schedule:
@@ -10,16 +10,15 @@ on:
     branches:
       - main # Or 'master', depending on your default branch name
       # This trigger will run the entire pipeline whenever you push changes to your main branch,
-      # which is useful for testing modifications to scrape_prisma.py or generate_xml_feed.py.
+      # useful for testing either scraper.
   workflow_dispatch: # Allows manual trigger from GitHub Actions tab
 
 jobs:
-  product_data_pipeline: # Renamed job to reflect it's a combined pipeline
+  run_all_pipelines: # Renamed job to reflect it runs all independent pipelines
     runs-on: ubuntu-latest
     
-    # Crucial: Grant write permissions for the GITHUB_TOKEN for both commit steps
     permissions:
-      contents: write 
+      contents: write # Crucial: Grant write permissions for the GITHUB_TOKEN for all commit steps
     
     steps:
     - name: Checkout repository code
@@ -28,22 +27,22 @@ jobs:
     - name: Set up Python 3.9
       uses: actions/setup-python@v5
       with:
-        python-version: '3.9' # Using a specific Python version (consistent with your scraper)
+        python-version: '3.9'
 
-    - name: Install Playwright for web scraping
+    # --- Pipeline 1: Scrape for CSV (for Bannerflow via Apps Script) ---
+    - name: Install Playwright for CSV scraper
       run: |
         pip install playwright
         playwright install chromium # Install the Chromium browser binaries
 
-    - name: Run web scraping script (scrape_prisma.py)
+    - name: Run CSV scraping script (scrape_prisma.py)
       # This script fetches data from the website and saves it to prisma_products.csv
       run: python scrape_prisma.py
 
     - name: Commit and push updated prisma_products.csv
-      # This step ensures the latest scraped data is saved to the repository
-      # and is available for the next step (XML generation).
+      # This step ensures the latest scraped CSV data is saved to the repository
       run: |
-        git config user.name "GitHub Actions"
+        git config user.name "GitHub Actions CSV Bot"
         git config user.email "actions@github.com"
         git add prisma_products.csv
         git commit -m "Automated: Update Prisma Market products data (CSV)" || echo "No changes to commit"
@@ -51,17 +50,19 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Automatically provided by GitHub
 
-    - name: Generate Cropink XML feed (cropink_feed.xml)
-      # This script reads from the *just updated* prisma_products.csv and creates the XML.
+    # --- Pipeline 2: Scrape for XML (for Cropink) ---
+    # Playwright is already installed from the previous step.
+    - name: Run XML generation script (generate_xml_feed.py)
+      # This script now scrapes the website independently and creates the XML directly.
       run: python generate_xml_feed.py
 
     - name: Commit and push generated cropink_feed.xml
       # This final step saves the newly generated XML feed to the repository.
       run: |
-        git config user.name "github-actions[bot]" # Using the [bot] user for automated commits
-        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git config user.name "github-actions XML Bot"
+        git config user.email "actions@github.com"
         git add cropink_feed.xml
-        git commit -m "Automated: Generate Cropink XML feed" || echo "No changes to commit"
+        git commit -m "Automated: Generate Cropink XML feed (scraped directly)" || echo "No changes to commit"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Automatically provided by GitHub
