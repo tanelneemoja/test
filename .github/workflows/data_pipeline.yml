@@ -1,0 +1,67 @@
+# .github/workflows/data_pipeline.yml
+name: Automated Product Data Pipeline
+
+on:
+  schedule:
+    # Runs the workflow every 3 hours (at minute 0 of every 3rd hour) in UTC.
+    # This corresponds to 03:00, 06:00, 09:00, 12:00, 15:00, 18:00, 21:00, 00:00 (next day) Estonia Time (EEST / UTC+3).
+    - cron: '0 */3 * * *' 
+  push: 
+    branches:
+      - main # Or 'master', depending on your default branch name
+      # This trigger will run the entire pipeline whenever you push changes to your main branch,
+      # which is useful for testing modifications to scrape_prisma.py or generate_xml_feed.py.
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+jobs:
+  product_data_pipeline: # Renamed job to reflect it's a combined pipeline
+    runs-on: ubuntu-latest
+    
+    # Crucial: Grant write permissions for the GITHUB_TOKEN for both commit steps
+    permissions:
+      contents: write 
+    
+    steps:
+    - name: Checkout repository code
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.9' # Using a specific Python version (consistent with your scraper)
+
+    - name: Install Playwright for web scraping
+      run: |
+        pip install playwright
+        playwright install chromium # Install the Chromium browser binaries
+
+    - name: Run web scraping script (scrape_prisma.py)
+      # This script fetches data from the website and saves it to prisma_products.csv
+      run: python scrape_prisma.py
+
+    - name: Commit and push updated prisma_products.csv
+      # This step ensures the latest scraped data is saved to the repository
+      # and is available for the next step (XML generation).
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add prisma_products.csv
+        git commit -m "Automated: Update Prisma Market products data (CSV)" || echo "No changes to commit"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Automatically provided by GitHub
+
+    - name: Generate Cropink XML feed (cropink_feed.xml)
+      # This script reads from the *just updated* prisma_products.csv and creates the XML.
+      run: python generate_xml_feed.py
+
+    - name: Commit and push generated cropink_feed.xml
+      # This final step saves the newly generated XML feed to the repository.
+      run: |
+        git config user.name "github-actions[bot]" # Using the [bot] user for automated commits
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add cropink_feed.xml
+        git commit -m "Automated: Generate Cropink XML feed" || echo "No changes to commit"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Automatically provided by GitHub
