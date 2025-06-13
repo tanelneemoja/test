@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 from xml.dom import minidom
 import asyncio
 from playwright.async_api import async_playwright
-import re # Used for advanced string replacements
+import re 
 
 # Define the Google Merchant Center namespace
 GMC_NAMESPACE = "http://base.google.com/ns/1.0"
@@ -106,19 +106,17 @@ async def scrape_and_generate_xml_feed(website_url, xml_output_file_path):
     for product_data in products_data:
         item = ET.SubElement(channel, 'item')
 
-        # Use add_sub_element_plain for fields WITHOUT CDATA (based on client's working XML)
+        # ALL fields now use add_sub_element_plain (no CDATA)
         add_sub_element_plain(item, g('id'), product_data.get('Product ID'))
-        add_sub_element_plain(item, g('price'), f"{product_data.get('Price (€)')} EUR")
+        add_sub_element_plain(item, g('title'), product_data.get('Product Name'))
+        add_sub_element_plain(item, g('description'), product_data.get('Product Name')) 
+        add_sub_element_plain(item, g('link'), product_data.get('Exit URL'))
+        add_sub_element_plain(item, g('image_link'), product_data.get('Image URL'))
+        add_sub_element_plain(item, g('brand'), product_data.get('Product Name'))
+        add_sub_element_plain(item, g('availability'), 'in stock')
         add_sub_element_plain(item, g('condition'), 'new')
-        add_sub_element_plain(item, g('currency'), 'EUR') # Added as per client's XML
-
-        # Use add_sub_element_cdata for fields WITH CDATA (based on client's working XML)
-        add_sub_element_cdata(item, g('title'), product_data.get('Product Name'))
-        add_sub_element_cdata(item, g('description'), product_data.get('Product Name')) 
-        add_sub_element_cdata(item, g('link'), product_data.get('Exit URL'))
-        add_sub_element_cdata(item, g('image_link'), product_data.get('Image URL'))
-        add_sub_element_cdata(item, g('availability'), 'in stock') # Client's XML has CDATA for availability
-        add_sub_element_cdata(item, g('brand'), product_data.get('Product Name')) # Assuming product name is brand for now
+        add_sub_element_plain(item, g('price'), f"{product_data.get('Price (€)')} EUR")
+        add_sub_element_plain(item, g('currency'), 'EUR')
         
         products_added_to_xml += 1
 
@@ -134,28 +132,25 @@ async def scrape_and_generate_xml_feed(website_url, xml_output_file_path):
         pretty_xml_as_string = pretty_xml_as_string.replace('<?xml version="1.0" ?>', '<?xml version="1.0" encoding="utf-8"?>', 1)
 
     # 2. Force change ns0: to g: for all tags. This is the most reliable way.
-    # We use a regex that matches `<ns0:tagname>` and `</ns0:tagname>`
     pretty_xml_as_string = re.sub(r'<ns0:([^>]+)>', r'<g:\1>', pretty_xml_as_string)
     pretty_xml_as_string = re.sub(r'</ns0:([^>]+)>', r'</g:\1>', pretty_xml_as_string)
     
     # 3. Clean up the duplicate xmlns:ns0 declaration in the <rss> tag if it appears
     pretty_xml_as_string = pretty_xml_as_string.replace('xmlns:ns0="http://base.google.com/ns/1.0"', '', 1)
     
+    # NOTE: CDATA post-processing is REMOVED in this version.
+
     with open(xml_output_file_path, mode='w', encoding='utf-8') as xmlfile:
         xmlfile.write(pretty_xml_as_string)
     print(f"Successfully generated XML feed with {products_added_to_xml} products to {xml_output_file_path}")
 
 
 # Helper function to add a simple sub-element with plain text (NO CDATA)
+# This function is now used for ALL fields.
 def add_sub_element_plain(parent, tag, text):
     element = ET.SubElement(parent, tag)
+    # ElementTree will automatically escape characters like <, >, & for plain text
     element.text = str(text) if text is not None else ''
-
-# Helper function to add a sub-element with CDATA (text wrapped with <![CDATA[...]]>)
-def add_sub_element_cdata(parent, tag, text):
-    element = ET.SubElement(parent, tag)
-    # This method relies on minidom.parseString re-interpreting this string as a CDATA node
-    element.text = f"<![CDATA[{str(text) if text is not None else ''}]]>"
 
 
 if __name__ == '__main__':
