@@ -3,11 +3,12 @@ import xml.etree.ElementTree as ET
 from xml.dom import minidom
 import asyncio
 from playwright.async_api import async_playwright
-import re
+import re # Used for advanced string replacements
 
 # Define the Google Merchant Center namespace
 GMC_NAMESPACE = "http://base.google.com/ns/1.0"
-# Helper to create qualified names for Google-specific elements (e.g., <g:id>)
+# Helper to create qualified names for Google-specific elements
+# ElementTree understands this, but we'll manually ensure 'g:' in final output
 g = lambda tag: f"{{{GMC_NAMESPACE}}}{tag}"
 
 async def scrape_and_generate_xml_feed(website_url, xml_output_file_path):
@@ -90,7 +91,7 @@ async def scrape_and_generate_xml_feed(website_url, xml_output_file_path):
     
     print(f"Finished scraping. Collected {len(products_data)} products for XML generation.")
     
-    # --- XML Generation ---
+    # --- XML Generation (ElementTree part) ---
     rss = ET.Element('rss', version="2.0")
     # This line is crucial for ElementTree to know about the 'g' prefix.
     rss.set('xmlns:g', GMC_NAMESPACE) 
@@ -106,26 +107,25 @@ async def scrape_and_generate_xml_feed(website_url, xml_output_file_path):
     for product_data in products_data:
         item = ET.SubElement(channel, 'item')
 
-        # Fields with CDATA (matching client's working example)
-        add_sub_element_cdata(item, g('id'), product_data.get('Product ID'))
-        add_sub_element_cdata(item, g('title'), product_data.get('Product Name'))
-        add_sub_element_cdata(item, g('description'), product_data.get('Product Name')) 
-        add_sub_element_cdata(item, g('link'), product_data.get('Exit URL'))
-        add_sub_element_cdata(item, g('image_link'), product_data.get('Image URL'))
-        add_sub_element_cdata(item, g('brand'), product_data.get('Product Name')) # Assuming product name is brand for now
+        # Add all elements using add_sub_element_plain.
+        # CDATA wrapping and g: prefixes will be handled in post-processing.
+        add_sub_element_plain(item, g('id'), product_data.get('Product ID'))
+        add_sub_element_plain(item, g('title'), product_data.get('Product Name'))
+        add_sub_element_plain(item, g('description'), product_data.get('Product Name')) 
+        add_sub_element_plain(item, g('link'), product_data.get('Exit URL'))
+        add_sub_element_plain(item, g('image_link'), product_data.get('Image URL'))
+        add_sub_element_plain(item, g('brand'), product_data.get('Product Name'))
 
-        # Fields without CDATA (matching client's working example)
-        add_sub_element(item, g('availability'), 'in stock')
-        add_sub_element(item, g('condition'), 'new')
+        add_sub_element_plain(item, g('availability'), 'in stock')
+        add_sub_element_plain(item, g('condition'), 'new')
 
         price_value = product_data.get('Price (€)')
         if price_value:
-            add_sub_element(item, g('price'), f"{price_value} EUR")
+            add_sub_element_plain(item, g('price'), f"{price_value} EUR")
         else:
-            add_sub_element(item, g('price'), '')
+            add_sub_element_plain(item, g('price'), '')
         
-        # Add the currency tag, as seen in the client's working XML
-        add_sub_element(item, g('currency'), 'EUR')
+        add_sub_element_plain(item, g('currency'), 'EUR')
         
         products_added_to_xml += 1
 
@@ -134,35 +134,20 @@ async def scrape_and_generate_xml_feed(website_url, xml_output_file_path):
     reparsed = minidom.parseString(rough_string)
     pretty_xml_as_string = reparsed.toprettyxml(indent="  ", encoding="utf-8").decode('utf-8')
 
-    # --- CRITICAL POST-PROCESSING FOR G: PREFIX AND NAMESPACE CLEANUP ---
-    # 1. Remove the extra <?xml ...?> declaration that minidom sometimes adds
+    # --- POST-PROCESSING FOR EXACT XML FORMAT ---
+
+    # 1. Ensure XML declaration is correct (utf-8)
     if pretty_xml_as_string.startswith('<?xml version="1.0" ?>'):
         pretty_xml_as_string = pretty_xml_as_string.replace('<?xml version="1.0" ?>', '<?xml version="1.0" encoding="utf-8"?>', 1)
 
-    # 2. Force change ns0: to g: if minidom incorrectly re-prefixes
-    # This regular expression ensures we only replace 'ns0:' when it's a tag prefix.
+    # 2. Force change ns0: to g: for all tags. This is the most reliable way.
+    # We use a regex that matches `<ns0:tagname>` and `</ns0:tagname>`
     pretty_xml_as_string = re.sub(r'<ns0:([^>]+)>', r'<g:\1>', pretty_xml_as_string)
     pretty_xml_as_string = re.sub(r'</ns0:([^>]+)>', r'</g:\1>', pretty_xml_as_string)
     
-    # 3. Clean up the duplicate namespace declaration in the <rss> tag
-    # This targets the specific xmlns:ns0 that appears for the Google namespace
-    # (Sometimes minidom puts both xmlns:ns0 and xmlns:g if it's confused, we remove ns0)
-    pretty_xml_as_string = pretty_xml_as_string.replace('xmlns:ns0="http://base.google.com/ns/1.0" ', '', 1)
+    # 3. Clean up the duplicate xmlns:ns0 declaration in the <rss> tag if it appears
+    # This targets the specific xmlns:ns0 attribute (e.g., ` xmlns:ns0="http://base.google.com/ns/1.0"`)
+    pretty_xml_as_string = pretty_xml_as_string.replace('xmlns:ns0="http://base.google.com/ns/1.0"', '', 1)
     
-    with open(xml_output_file_path, mode='w', encoding='utf-8') as xmlfile:
-        xmlfile.write(pretty_xml_as_string)
-    print(f"Successfully generated XML feed with {products_added_to_xml} products to {xml_output_file_path}")
-
-
-def add_sub_element(parent, tag, text):
-    element = ET.SubElement(parent, tag)
-    element.text = str(text) if text is not None else ''
-
-def add_sub_element_cdata(parent, tag, text):
-    element = ET.SubElement(parent, tag)
-    element.text = f"<![CDATA[{str(text) if text is not None else ''}]]>"
-
-if __name__ == '__main__':
-    website_to_scrape = "https://www.prismamarket.ee/leht/nadala-hind"
-    output_xml_file = 'cropink_feed.xml'
-    asyncio.run(scrape_and_generate_xml_feed(website_to_scrape, output_xml_file))
+    # 4. Inject CDATA sections for specific fields that need them, matching client's example.
+    # This handles cases
