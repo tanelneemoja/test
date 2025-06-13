@@ -1,140 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss xmlns:ns0="http://base.google.com/ns/1.0" xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
   <channel>
     <title>Prisma Market Products</title>
     <link>https://www.prismamarket.ee</link>
     <description>Product feed for Prisma Market Estonia</description>
     <item>
-      <ns0:id>&lt;![CDATA[0000087157260]]&gt;</ns0:id>
-      <ns0:title>&lt;![CDATA[Ketšup Original  700 g]]&gt;</ns0:title>
-      <ns0:description>&lt;![CDATA[Ketšup Original  700 g]]&gt;</ns0:description>
-      <ns0:link>&lt;![CDATA[https://www.prismamarket.ee/toode/ketsup-original-700-g/0000087157260]]&gt;</ns0:link>
-      <ns0:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/4UkmsKTzqtJBCRrYT5a0Lq.jpg]]&gt;</ns0:image_link>
-      <ns0:brand>&lt;![CDATA[Ketšup Original  700 g]]&gt;</ns0:brand>
-      <ns0:availability>in stock</ns0:availability>
-      <ns0:condition>new</ns0:condition>
-      <ns0:price>2.69 EUR</ns0:price>
-      <ns0:currency>EUR</ns0:currency>
+      <g:id>&lt;![CDATA[0000087157260]]&gt;</g:id>
+      <g:title>&lt;![CDATA[Ketšup Original  700 g]]&gt;</g:title>
+      <g:description>&lt;![CDATA[Ketšup Original  700 g]]&gt;</g:description>
+      <g:link>&lt;![CDATA[https://www.prismamarket.ee/toode/ketsup-original-700-g/0000087157260]]&gt;</g:link>
+      <g:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/4UkmsKTzqtJBCRrYT5a0Lq.jpg]]&gt;</g:image_link>
+      <g:brand>&lt;![CDATA[Ketšup Original  700 g]]&gt;</g:brand>
+      <g:availability>in stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>2.69 EUR</g:price>
+      <g:currency>EUR</g:currency>
     </item>
     <item>
-      <ns0:id>&lt;![CDATA[4740123001268]]&gt;</ns0:id>
-      <ns0:title>&lt;![CDATA[Juustu snäkk, 200 g]]&gt;</ns0:title>
-      <ns0:description>&lt;![CDATA[Juustu snäkk, 200 g]]&gt;</ns0:description>
-      <ns0:link>&lt;![CDATA[https://www.prismamarket.ee/toode/juustu-snakk-200-g/4740123001268]]&gt;</ns0:link>
-      <ns0:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/2C-Ymhqtq9zBVgqr9RRplz.jpg]]&gt;</ns0:image_link>
-      <ns0:brand>&lt;![CDATA[Juustu snäkk, 200 g]]&gt;</ns0:brand>
-      <ns0:availability>in stock</ns0:availability>
-      <ns0:condition>new</ns0:condition>
-      <ns0:price>1.99 EUR</ns0:price>
-      <ns0:currency>EUR</ns0:currency>
+      <g:id>&lt;![CDATA[4740123001268]]&gt;</g:id>
+      <g:title>&lt;![CDATA[Juustu snäkk, 200 g]]&gt;</g:title>
+      <g:description>&lt;![CDATA[Juustu snäkk, 200 g]]&gt;</g:description>
+      <g:link>&lt;![CDATA[https://www.prismamarket.ee/toode/juustu-snakk-200-g/4740123001268]]&gt;</g:link>
+      <g:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/2C-Ymhqtq9zBVgqr9RRplz.jpg]]&gt;</g:image_link>
+      <g:brand>&lt;![CDATA[Juustu snäkk, 200 g]]&gt;</g:brand>
+      <g:availability>in stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>1.99 EUR</g:price>
+      <g:currency>EUR</g:currency>
     </item>
     <item>
-      <ns0:id>&lt;![CDATA[4740123001282]]&gt;</ns0:id>
-      <ns0:title>&lt;![CDATA[Juustu mix, 200 g]]&gt;</ns0:title>
-      <ns0:description>&lt;![CDATA[Juustu mix, 200 g]]&gt;</ns0:description>
-      <ns0:link>&lt;![CDATA[https://www.prismamarket.ee/toode/juustu-mix-200-g/4740123001282]]&gt;</ns0:link>
-      <ns0:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/DROxrWrSazXAc9XodH3-p7.jpg]]&gt;</ns0:image_link>
-      <ns0:brand>&lt;![CDATA[Juustu mix, 200 g]]&gt;</ns0:brand>
-      <ns0:availability>in stock</ns0:availability>
-      <ns0:condition>new</ns0:condition>
-      <ns0:price>1.99 EUR</ns0:price>
-      <ns0:currency>EUR</ns0:currency>
+      <g:id>&lt;![CDATA[4740123001282]]&gt;</g:id>
+      <g:title>&lt;![CDATA[Juustu mix, 200 g]]&gt;</g:title>
+      <g:description>&lt;![CDATA[Juustu mix, 200 g]]&gt;</g:description>
+      <g:link>&lt;![CDATA[https://www.prismamarket.ee/toode/juustu-mix-200-g/4740123001282]]&gt;</g:link>
+      <g:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/DROxrWrSazXAc9XodH3-p7.jpg]]&gt;</g:image_link>
+      <g:brand>&lt;![CDATA[Juustu mix, 200 g]]&gt;</g:brand>
+      <g:availability>in stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>1.99 EUR</g:price>
+      <g:currency>EUR</g:currency>
     </item>
     <item>
-      <ns0:id>&lt;![CDATA[4740171084114]]&gt;</ns0:id>
-      <ns0:title>&lt;![CDATA[Grillvorst Maitselt Mahe 900 g]]&gt;</ns0:title>
-      <ns0:description>&lt;![CDATA[Grillvorst Maitselt Mahe 900 g]]&gt;</ns0:description>
-      <ns0:link>&lt;![CDATA[https://www.prismamarket.ee/toode/grillvorst-maitselt-mahe-900-g/4740171084114]]&gt;</ns0:link>
-      <ns0:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/9zStkeCBqAhAxA5pUGN9tc.jpg]]&gt;</ns0:image_link>
-      <ns0:brand>&lt;![CDATA[Grillvorst Maitselt Mahe 900 g]]&gt;</ns0:brand>
-      <ns0:availability>in stock</ns0:availability>
-      <ns0:condition>new</ns0:condition>
-      <ns0:price>4.39 EUR</ns0:price>
-      <ns0:currency>EUR</ns0:currency>
+      <g:id>&lt;![CDATA[4740171084114]]&gt;</g:id>
+      <g:title>&lt;![CDATA[Grillvorst Maitselt Mahe 900 g]]&gt;</g:title>
+      <g:description>&lt;![CDATA[Grillvorst Maitselt Mahe 900 g]]&gt;</g:description>
+      <g:link>&lt;![CDATA[https://www.prismamarket.ee/toode/grillvorst-maitselt-mahe-900-g/4740171084114]]&gt;</g:link>
+      <g:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/9zStkeCBqAhAxA5pUGN9tc.jpg]]&gt;</g:image_link>
+      <g:brand>&lt;![CDATA[Grillvorst Maitselt Mahe 900 g]]&gt;</g:brand>
+      <g:availability>in stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>4.39 EUR</g:price>
+      <g:currency>EUR</g:currency>
     </item>
     <item>
-      <ns0:id>&lt;![CDATA[2060521200004]]&gt;</ns0:id>
-      <ns0:title>&lt;![CDATA[Lillkapsas varajane]]&gt;</ns0:title>
-      <ns0:description>&lt;![CDATA[Lillkapsas varajane]]&gt;</ns0:description>
-      <ns0:link>&lt;![CDATA[https://www.prismamarket.ee/toode/lillkapsas-varajane/2060521200004]]&gt;</ns0:link>
-      <ns0:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/6q5kfjr-KPf8SnFkwmi9_c.jpg]]&gt;</ns0:image_link>
-      <ns0:brand>&lt;![CDATA[Lillkapsas varajane]]&gt;</ns0:brand>
-      <ns0:availability>in stock</ns0:availability>
-      <ns0:condition>new</ns0:condition>
-      <ns0:price>2.79 EUR</ns0:price>
-      <ns0:currency>EUR</ns0:currency>
+      <g:id>&lt;![CDATA[2060521200004]]&gt;</g:id>
+      <g:title>&lt;![CDATA[Lillkapsas varajane]]&gt;</g:title>
+      <g:description>&lt;![CDATA[Lillkapsas varajane]]&gt;</g:description>
+      <g:link>&lt;![CDATA[https://www.prismamarket.ee/toode/lillkapsas-varajane/2060521200004]]&gt;</g:link>
+      <g:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/6q5kfjr-KPf8SnFkwmi9_c.jpg]]&gt;</g:image_link>
+      <g:brand>&lt;![CDATA[Lillkapsas varajane]]&gt;</g:brand>
+      <g:availability>in stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>2.79 EUR</g:price>
+      <g:currency>EUR</g:currency>
     </item>
     <item>
-      <ns0:id>&lt;![CDATA[2060494500002]]&gt;</ns0:id>
-      <ns0:title>&lt;![CDATA[Arbuus]]&gt;</ns0:title>
-      <ns0:description>&lt;![CDATA[Arbuus]]&gt;</ns0:description>
-      <ns0:link>&lt;![CDATA[https://www.prismamarket.ee/toode/arbuus/2060494500002]]&gt;</ns0:link>
-      <ns0:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/BC2ZCAgYaCm841p4a3wEgo.jpg]]&gt;</ns0:image_link>
-      <ns0:brand>&lt;![CDATA[Arbuus]]&gt;</ns0:brand>
-      <ns0:availability>in stock</ns0:availability>
-      <ns0:condition>new</ns0:condition>
-      <ns0:price>5.53 EUR</ns0:price>
-      <ns0:currency>EUR</ns0:currency>
+      <g:id>&lt;![CDATA[2060494500002]]&gt;</g:id>
+      <g:title>&lt;![CDATA[Arbuus]]&gt;</g:title>
+      <g:description>&lt;![CDATA[Arbuus]]&gt;</g:description>
+      <g:link>&lt;![CDATA[https://www.prismamarket.ee/toode/arbuus/2060494500002]]&gt;</g:link>
+      <g:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/BC2ZCAgYaCm841p4a3wEgo.jpg]]&gt;</g:image_link>
+      <g:brand>&lt;![CDATA[Arbuus]]&gt;</g:brand>
+      <g:availability>in stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>5.53 EUR</g:price>
+      <g:currency>EUR</g:currency>
     </item>
     <item>
-      <ns0:id>&lt;![CDATA[4740046013355]]&gt;</ns0:id>
-      <ns0:title>&lt;![CDATA[Mango-tšilli br.kintsulihašašlõkk 800G]]&gt;</ns0:title>
-      <ns0:description>&lt;![CDATA[Mango-tšilli br.kintsulihašašlõkk 800G]]&gt;</ns0:description>
-      <ns0:link>&lt;![CDATA[https://www.prismamarket.ee/toode/mango-tsilli-brkintsulihasaslokk-800g/4740046013355]]&gt;</ns0:link>
-      <ns0:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/FylH5hv-aTg8PtBwtCoiJi.jpg]]&gt;</ns0:image_link>
-      <ns0:brand>&lt;![CDATA[Mango-tšilli br.kintsulihašašlõkk 800G]]&gt;</ns0:brand>
-      <ns0:availability>in stock</ns0:availability>
-      <ns0:condition>new</ns0:condition>
-      <ns0:price>5.49 EUR</ns0:price>
-      <ns0:currency>EUR</ns0:currency>
+      <g:id>&lt;![CDATA[4740046013355]]&gt;</g:id>
+      <g:title>&lt;![CDATA[Mango-tšilli br.kintsulihašašlõkk 800G]]&gt;</g:title>
+      <g:description>&lt;![CDATA[Mango-tšilli br.kintsulihašašlõkk 800G]]&gt;</g:description>
+      <g:link>&lt;![CDATA[https://www.prismamarket.ee/toode/mango-tsilli-brkintsulihasaslokk-800g/4740046013355]]&gt;</g:link>
+      <g:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/FylH5hv-aTg8PtBwtCoiJi.jpg]]&gt;</g:image_link>
+      <g:brand>&lt;![CDATA[Mango-tšilli br.kintsulihašašlõkk 800G]]&gt;</g:brand>
+      <g:availability>in stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>5.49 EUR</g:price>
+      <g:currency>EUR</g:currency>
     </item>
     <item>
-      <ns0:id>&lt;![CDATA[7310361144897]]&gt;</ns0:id>
-      <ns0:title>&lt;![CDATA[Majapidamispaber Premium 2-kihiline 120 lehte]]&gt;</ns0:title>
-      <ns0:description>&lt;![CDATA[Majapidamispaber Premium 2-kihiline 120 lehte]]&gt;</ns0:description>
-      <ns0:link>&lt;![CDATA[https://www.prismamarket.ee/toode/majapidamispaber-premium-2-kihiline-120-lehte/7310361144897]]&gt;</ns0:link>
-      <ns0:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/29rQtD2mqGpBdy_iuBCyI7.jpg]]&gt;</ns0:image_link>
-      <ns0:brand>&lt;![CDATA[Majapidamispaber Premium 2-kihiline 120 lehte]]&gt;</ns0:brand>
-      <ns0:availability>in stock</ns0:availability>
-      <ns0:condition>new</ns0:condition>
-      <ns0:price>1.59 EUR</ns0:price>
-      <ns0:currency>EUR</ns0:currency>
+      <g:id>&lt;![CDATA[7310361144897]]&gt;</g:id>
+      <g:title>&lt;![CDATA[Majapidamispaber Premium 2-kihiline 120 lehte]]&gt;</g:title>
+      <g:description>&lt;![CDATA[Majapidamispaber Premium 2-kihiline 120 lehte]]&gt;</g:description>
+      <g:link>&lt;![CDATA[https://www.prismamarket.ee/toode/majapidamispaber-premium-2-kihiline-120-lehte/7310361144897]]&gt;</g:link>
+      <g:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/29rQtD2mqGpBdy_iuBCyI7.jpg]]&gt;</g:image_link>
+      <g:brand>&lt;![CDATA[Majapidamispaber Premium 2-kihiline 120 lehte]]&gt;</g:brand>
+      <g:availability>in stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>1.59 EUR</g:price>
+      <g:currency>EUR</g:currency>
     </item>
     <item>
-      <ns0:id>&lt;![CDATA[4740051001958]]&gt;</ns0:id>
-      <ns0:title>&lt;![CDATA[A. Le Coq traditsiooniline limonaad 1 l]]&gt;</ns0:title>
-      <ns0:description>&lt;![CDATA[A. Le Coq traditsiooniline limonaad 1 l]]&gt;</ns0:description>
-      <ns0:link>&lt;![CDATA[https://www.prismamarket.ee/toode/a-le-coq-traditsiooniline-limonaad-1-l/4740051001958]]&gt;</ns0:link>
-      <ns0:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/6Ih0A-mwaDXB88WC4Zbf6J.jpg]]&gt;</ns0:image_link>
-      <ns0:brand>&lt;![CDATA[A. Le Coq traditsiooniline limonaad 1 l]]&gt;</ns0:brand>
-      <ns0:availability>in stock</ns0:availability>
-      <ns0:condition>new</ns0:condition>
-      <ns0:price>0.79 EUR</ns0:price>
-      <ns0:currency>EUR</ns0:currency>
+      <g:id>&lt;![CDATA[4740051001958]]&gt;</g:id>
+      <g:title>&lt;![CDATA[A. Le Coq traditsiooniline limonaad 1 l]]&gt;</g:title>
+      <g:description>&lt;![CDATA[A. Le Coq traditsiooniline limonaad 1 l]]&gt;</g:description>
+      <g:link>&lt;![CDATA[https://www.prismamarket.ee/toode/a-le-coq-traditsiooniline-limonaad-1-l/4740051001958]]&gt;</g:link>
+      <g:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/6Ih0A-mwaDXB88WC4Zbf6J.jpg]]&gt;</g:image_link>
+      <g:brand>&lt;![CDATA[A. Le Coq traditsiooniline limonaad 1 l]]&gt;</g:brand>
+      <g:availability>in stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>0.79 EUR</g:price>
+      <g:currency>EUR</g:currency>
     </item>
     <item>
-      <ns0:id>&lt;![CDATA[5900259130747]]&gt;</ns0:id>
-      <ns0:title>&lt;![CDATA[LAY'S Hapukoore-ja ürtidemaitselised kartulikrõpsud. 0,25kg]]&gt;</ns0:title>
-      <ns0:description>&lt;![CDATA[LAY'S Hapukoore-ja ürtidemaitselised kartulikrõpsud. 0,25kg]]&gt;</ns0:description>
-      <ns0:link>&lt;![CDATA[https://www.prismamarket.ee/toode/lays-hapukoore-ja-urtidemaitselised-kartulikropsud-0-25kg/5900259130747]]&gt;</ns0:link>
-      <ns0:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/2jfYo1Ni4u4AIpPn_cPCK4.jpg]]&gt;</ns0:image_link>
-      <ns0:brand>&lt;![CDATA[LAY'S Hapukoore-ja ürtidemaitselised kartulikrõpsud. 0,25kg]]&gt;</ns0:brand>
-      <ns0:availability>in stock</ns0:availability>
-      <ns0:condition>new</ns0:condition>
-      <ns0:price>2.99 EUR</ns0:price>
-      <ns0:currency>EUR</ns0:currency>
+      <g:id>&lt;![CDATA[5900259130747]]&gt;</g:id>
+      <g:title>&lt;![CDATA[LAY'S Hapukoore-ja ürtidemaitselised kartulikrõpsud. 0,25kg]]&gt;</g:title>
+      <g:description>&lt;![CDATA[LAY'S Hapukoore-ja ürtidemaitselised kartulikrõpsud. 0,25kg]]&gt;</g:description>
+      <g:link>&lt;![CDATA[https://www.prismamarket.ee/toode/lays-hapukoore-ja-urtidemaitselised-kartulikropsud-0-25kg/5900259130747]]&gt;</g:link>
+      <g:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/2jfYo1Ni4u4AIpPn_cPCK4.jpg]]&gt;</g:image_link>
+      <g:brand>&lt;![CDATA[LAY'S Hapukoore-ja ürtidemaitselised kartulikrõpsud. 0,25kg]]&gt;</g:brand>
+      <g:availability>in stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>2.99 EUR</g:price>
+      <g:currency>EUR</g:currency>
     </item>
     <item>
-      <ns0:id>&lt;![CDATA[5900259128928]]&gt;</ns0:id>
-      <ns0:title>&lt;![CDATA[LAY'S Sibulamaitselised kartulikrõpsud 0,25kg]]&gt;</ns0:title>
-      <ns0:description>&lt;![CDATA[LAY'S Sibulamaitselised kartulikrõpsud 0,25kg]]&gt;</ns0:description>
-      <ns0:link>&lt;![CDATA[https://www.prismamarket.ee/toode/lays-sibulamaitselised-kartulikropsud-0-25kg/5900259128928]]&gt;</ns0:link>
-      <ns0:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/FKUBsJ1lqwD8jajKfjN1nf.jpg]]&gt;</ns0:image_link>
-      <ns0:brand>&lt;![CDATA[LAY'S Sibulamaitselised kartulikrõpsud 0,25kg]]&gt;</ns0:brand>
-      <ns0:availability>in stock</ns0:availability>
-      <ns0:condition>new</ns0:condition>
-      <ns0:price>2.99 EUR</ns0:price>
-      <ns0:currency>EUR</ns0:currency>
+      <g:id>&lt;![CDATA[5900259128928]]&gt;</g:id>
+      <g:title>&lt;![CDATA[LAY'S Sibulamaitselised kartulikrõpsud 0,25kg]]&gt;</g:title>
+      <g:description>&lt;![CDATA[LAY'S Sibulamaitselised kartulikrõpsud 0,25kg]]&gt;</g:description>
+      <g:link>&lt;![CDATA[https://www.prismamarket.ee/toode/lays-sibulamaitselised-kartulikropsud-0-25kg/5900259128928]]&gt;</g:link>
+      <g:image_link>&lt;![CDATA[https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/FKUBsJ1lqwD8jajKfjN1nf.jpg]]&gt;</g:image_link>
+      <g:brand>&lt;![CDATA[LAY'S Sibulamaitselised kartulikrõpsud 0,25kg]]&gt;</g:brand>
+      <g:availability>in stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>2.99 EUR</g:price>
+      <g:currency>EUR</g:currency>
     </item>
   </channel>
 </rss>
