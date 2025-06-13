@@ -3,12 +3,11 @@ import xml.etree.ElementTree as ET
 from xml.dom import minidom
 import asyncio
 from playwright.async_api import async_playwright
-import re # Used for advanced string replacements
+import re 
 
 # Define the Google Merchant Center namespace
 GMC_NAMESPACE = "http://base.google.com/ns/1.0"
 # Helper to create qualified names for Google-specific elements
-# ElementTree understands this, but we'll manually ensure 'g:' in final output
 g = lambda tag: f"{{{GMC_NAMESPACE}}}{tag}"
 
 async def scrape_and_generate_xml_feed(website_url, xml_output_file_path):
@@ -107,24 +106,16 @@ async def scrape_and_generate_xml_feed(website_url, xml_output_file_path):
     for product_data in products_data:
         item = ET.SubElement(channel, 'item')
 
-        # Add all elements using add_sub_element_plain.
-        # CDATA wrapping and g: prefixes will be handled in post-processing.
+        # ALL fields now use add_sub_element_plain (no CDATA)
         add_sub_element_plain(item, g('id'), product_data.get('Product ID'))
         add_sub_element_plain(item, g('title'), product_data.get('Product Name'))
         add_sub_element_plain(item, g('description'), product_data.get('Product Name')) 
         add_sub_element_plain(item, g('link'), product_data.get('Exit URL'))
         add_sub_element_plain(item, g('image_link'), product_data.get('Image URL'))
         add_sub_element_plain(item, g('brand'), product_data.get('Product Name'))
-
         add_sub_element_plain(item, g('availability'), 'in stock')
         add_sub_element_plain(item, g('condition'), 'new')
-
-        price_value = product_data.get('Price (€)')
-        if price_value:
-            add_sub_element_plain(item, g('price'), f"{price_value} EUR")
-        else:
-            add_sub_element_plain(item, g('price'), '')
-        
+        add_sub_element_plain(item, g('price'), f"{product_data.get('Price (€)')} EUR")
         add_sub_element_plain(item, g('currency'), 'EUR')
         
         products_added_to_xml += 1
@@ -134,20 +125,35 @@ async def scrape_and_generate_xml_feed(website_url, xml_output_file_path):
     reparsed = minidom.parseString(rough_string)
     pretty_xml_as_string = reparsed.toprettyxml(indent="  ", encoding="utf-8").decode('utf-8')
 
-    # --- POST-PROCESSING FOR EXACT XML FORMAT ---
+    # --- POST-PROCESSING FOR EXACT XML FORMAT (Prefix & Namespace Cleanup) ---
 
     # 1. Ensure XML declaration is correct (utf-8)
     if pretty_xml_as_string.startswith('<?xml version="1.0" ?>'):
         pretty_xml_as_string = pretty_xml_as_string.replace('<?xml version="1.0" ?>', '<?xml version="1.0" encoding="utf-8"?>', 1)
 
     # 2. Force change ns0: to g: for all tags. This is the most reliable way.
-    # We use a regex that matches `<ns0:tagname>` and `</ns0:tagname>`
     pretty_xml_as_string = re.sub(r'<ns0:([^>]+)>', r'<g:\1>', pretty_xml_as_string)
     pretty_xml_as_string = re.sub(r'</ns0:([^>]+)>', r'</g:\1>', pretty_xml_as_string)
     
     # 3. Clean up the duplicate xmlns:ns0 declaration in the <rss> tag if it appears
-    # This targets the specific xmlns:ns0 attribute (e.g., ` xmlns:ns0="http://base.google.com/ns/1.0"`)
     pretty_xml_as_string = pretty_xml_as_string.replace('xmlns:ns0="http://base.google.com/ns/1.0"', '', 1)
     
-    # 4. Inject CDATA sections for specific fields that need them, matching client's example.
-    # This handles cases
+    # NOTE: CDATA post-processing is REMOVED in this version.
+
+    with open(xml_output_file_path, mode='w', encoding='utf-8') as xmlfile:
+        xmlfile.write(pretty_xml_as_string)
+    print(f"Successfully generated XML feed with {products_added_to_xml} products to {xml_output_file_path}")
+
+
+# Helper function to add a simple sub-element with plain text (NO CDATA)
+# This function is now used for ALL fields.
+def add_sub_element_plain(parent, tag, text):
+    element = ET.SubElement(parent, tag)
+    # ElementTree will automatically escape characters like <, >, & for plain text
+    element.text = str(text) if text is not None else ''
+
+
+if __name__ == '__main__':
+    website_to_scrape = "https://www.prismamarket.ee/leht/nadala-hind"
+    output_xml_file = 'cropink_feed.xml'
+    asyncio.run(scrape_and_generate_xml_feed(website_to_scrape, output_xml_file))
