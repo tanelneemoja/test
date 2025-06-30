@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 from xml.dom import minidom
 import asyncio
 from playwright.async_api import async_playwright
-import re 
+import re
 
 # Define the Google Merchant Center namespace
 GMC_NAMESPACE = "http://base.google.com/ns/1.0"
@@ -103,13 +103,17 @@ async def scrape_and_generate_xml_feed(website_url, xml_output_file_path):
 
     products_added_to_xml = 0
 
+    # Define the google_product_category string with escaped entities for direct use
+    google_product_category_text = 'Apparel &#38; Accessories &#62; Clothing &#62; Outerwear &#62; Coats &#38; Jackets'
+
     for product_data in products_data:
         item = ET.SubElement(channel, 'item')
 
         # ALL fields now use add_sub_element_plain (no CDATA)
         add_sub_element_plain(item, g('id'), product_data.get('Product ID'))
         add_sub_element_plain(item, g('title'), product_data.get('Product Name'))
-        add_sub_element_plain(item, g('google_product_category'), 'Apparel &#38; Accessories &#62; Clothing &#62; Outerwear &#62; Coats &#38; Jackets')
+        # Use the pre-defined string for google_product_category
+        add_sub_element_plain(item, g('google_product_category'), google_product_category_text) 
         add_sub_element_plain(item, g('description'), product_data.get('Product Name')) 
         add_sub_element_plain(item, g('link'), product_data.get('Exit URL'))
         add_sub_element_plain(item, g('image_link'), product_data.get('Image URL'))
@@ -139,7 +143,11 @@ async def scrape_and_generate_xml_feed(website_url, xml_output_file_path):
     # 3. Clean up the duplicate xmlns:ns0 declaration in the <rss> tag if it appears
     pretty_xml_as_string = pretty_xml_as_string.replace('xmlns:ns0="http://base.google.com/ns/1.0"', '', 1)
     
-    # NOTE: CDATA post-processing is REMOVED in this version.
+    # 4. POST-PROCESSING for Google Product Category entities
+    # This is the crucial step. We replace the double-escaped entities with the desired ones.
+    pretty_xml_as_string = pretty_xml_as_string.replace('&amp;#38;', '&#38;')
+    pretty_xml_as_string = pretty_xml_as_string.replace('&amp;#62;', '&#62;')
+
 
     with open(xml_output_file_path, mode='w', encoding='utf-8') as xmlfile:
         xmlfile.write(pretty_xml_as_string)
