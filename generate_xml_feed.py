@@ -109,7 +109,7 @@ async def scrape_and_generate_xml_feed(website_url, xml_output_file_path):
         # ALL fields now use add_sub_element_plain (no CDATA)
         add_sub_element_plain(item, g('id'), product_data.get('Product ID'))
         add_sub_element_plain(item, g('title'), product_data.get('Product Name'))
-        add_sub_element_plain(item, g('google_product_category'), product_data.get('Product ID'))
+        add_sub_element_plain(item, g('google_product_category'), 'Apparel & Accessories > Clothing > Outerwear > Coats & Jackets')
         add_sub_element_plain(item, g('description'), product_data.get('Product Name')) 
         add_sub_element_plain(item, g('link'), product_data.get('Exit URL'))
         add_sub_element_plain(item, g('image_link'), product_data.get('Image URL'))
