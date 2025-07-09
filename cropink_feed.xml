@@ -14,7 +14,7 @@
       <g:brand>SAAREMAA VESI 500 ML NÕRGALT GASEERITUD</g:brand>
       <g:availability>in stock</g:availability>
       <g:condition>new</g:condition>
-      <g:price>0.29 EUR</g:price>
+      <g:price>0.51 EUR</g:price>
       <g:currency>EUR</g:currency>
     </item>
     <item>
@@ -27,7 +27,7 @@
       <g:brand>SAAREMAA VESI 500 ML</g:brand>
       <g:availability>in stock</g:availability>
       <g:condition>new</g:condition>
-      <g:price>0.29 EUR</g:price>
+      <g:price>0.51 EUR</g:price>
       <g:currency>EUR</g:currency>
     </item>
     <item>
@@ -40,7 +40,7 @@
       <g:brand>SAAREMAA VESI SIDRUNI- 500 ML MAITSELINE GAASIGA</g:brand>
       <g:availability>in stock</g:availability>
       <g:condition>new</g:condition>
-      <g:price>0.29 EUR</g:price>
+      <g:price>0.56 EUR</g:price>
       <g:currency>EUR</g:currency>
     </item>
     <item>
@@ -118,7 +118,7 @@
       <g:brand>Puding vanilli, 230g</g:brand>
       <g:availability>in stock</g:availability>
       <g:condition>new</g:condition>
-      <g:price>0.69 EUR</g:price>
+      <g:price>1.27 EUR</g:price>
       <g:currency>EUR</g:currency>
     </item>
     <item>
@@ -131,7 +131,7 @@
       <g:brand>Puding karamelli, 230g</g:brand>
       <g:availability>in stock</g:availability>
       <g:condition>new</g:condition>
-      <g:price>0.69 EUR</g:price>
+      <g:price>1.27 EUR</g:price>
       <g:currency>EUR</g:currency>
     </item>
     <item>
@@ -144,7 +144,7 @@
       <g:brand>Puding šokolaadi-metsapähkli maitseline, 230g</g:brand>
       <g:availability>in stock</g:availability>
       <g:condition>new</g:condition>
-      <g:price>0.69 EUR</g:price>
+      <g:price>1.27 EUR</g:price>
       <g:currency>EUR</g:currency>
     </item>
     <item>
@@ -157,20 +157,7 @@
       <g:brand>Alma puding kookose 230g</g:brand>
       <g:availability>in stock</g:availability>
       <g:condition>new</g:condition>
-      <g:price>0.69 EUR</g:price>
-      <g:currency>EUR</g:currency>
-    </item>
-    <item>
-      <g:id>4770405222463</g:id>
-      <g:title>Vytautas mineraalvesi 6-pakk 9L</g:title>
-      <g:google_product_category>Apparel &#38; Accessories &#62; Clothing &#62; Outerwear &#62; Coats &#38; Jackets</g:google_product_category>
-      <g:description>Vytautas mineraalvesi 6-pakk 9L</g:description>
-      <g:link>https://www.prismamarket.ee/toode/vytautas-mineraalvesi-6-pakk-9l/4770405222463</g:link>
-      <g:image_link>https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/1gU95vwhKRTAFBjoeIB0Ui.jpg</g:image_link>
-      <g:brand>Vytautas mineraalvesi 6-pakk 9L</g:brand>
-      <g:availability>in stock</g:availability>
-      <g:condition>new</g:condition>
-      <g:price>3.99 EUR</g:price>
+      <g:price>1.27 EUR</g:price>
       <g:currency>EUR</g:currency>
     </item>
     <item>
@@ -183,7 +170,7 @@
       <g:brand>Alma puding vaarika-mascarpone maitseline, 230g</g:brand>
       <g:availability>in stock</g:availability>
       <g:condition>new</g:condition>
-      <g:price>0.69 EUR</g:price>
+      <g:price>1.27 EUR</g:price>
       <g:currency>EUR</g:currency>
     </item>
     <item>
@@ -196,7 +183,7 @@
       <g:brand>Forte juustu toorvorstikesed 400 g</g:brand>
       <g:availability>in stock</g:availability>
       <g:condition>new</g:condition>
-      <g:price>2.69 EUR</g:price>
+      <g:price>4.06 EUR</g:price>
       <g:currency>EUR</g:currency>
     </item>
     <item>
@@ -209,7 +196,7 @@
       <g:brand>Tomat kollane Weiss Aiand I klass</g:brand>
       <g:availability>in stock</g:availability>
       <g:condition>new</g:condition>
-      <g:price>3.79 EUR</g:price>
+      <g:price>5.75 EUR</g:price>
       <g:currency>EUR</g:currency>
     </item>
     <item>
@@ -222,7 +209,20 @@
       <g:brand>Tomat ROOSA  Weiss Aiand I klass</g:brand>
       <g:availability>in stock</g:availability>
       <g:condition>new</g:condition>
-      <g:price>3.79 EUR</g:price>
+      <g:price>5.75 EUR</g:price>
+      <g:currency>EUR</g:currency>
+    </item>
+    <item>
+      <g:id>4770405222463</g:id>
+      <g:title>Vytautas mineraalvesi 6-pakk 9L</g:title>
+      <g:google_product_category>Apparel &#38; Accessories &#62; Clothing &#62; Outerwear &#62; Coats &#38; Jackets</g:google_product_category>
+      <g:description>Vytautas mineraalvesi 6-pakk 9L</g:description>
+      <g:link>https://www.prismamarket.ee/toode/vytautas-mineraalvesi-6-pakk-9l/4770405222463</g:link>
+      <g:image_link>https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/1gU95vwhKRTAFBjoeIB0Ui.jpg</g:image_link>
+      <g:brand>Vytautas mineraalvesi 6-pakk 9L</g:brand>
+      <g:availability>in stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>4.00 EUR</g:price>
       <g:currency>EUR</g:currency>
     </item>
   </channel>
