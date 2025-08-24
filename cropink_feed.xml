@@ -82,31 +82,5 @@
       <g:price>0.85 EUR</g:price>
       <g:currency>EUR</g:currency>
     </item>
-    <item>
-      <g:id>4743303115007</g:id>
-      <g:title>Tartu Mill Durum p. Ditali lisci 500 g</g:title>
-      <g:google_product_category>Apparel &#38; Accessories &#62; Clothing &#62; Outerwear &#62; Coats &#38; Jackets</g:google_product_category>
-      <g:description>Tartu Mill Durum p. Ditali lisci 500 g</g:description>
-      <g:link>https://www.prismamarket.ee/toode/tartu-mill-durum-p-ditali-lisci-500-g/4743303115007</g:link>
-      <g:image_link>https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/Dl8hspsJ4lE9NiKhcyHHJw.jpg</g:image_link>
-      <g:brand>Tartu Mill Durum p. Ditali lisci 500 g</g:brand>
-      <g:availability>in stock</g:availability>
-      <g:condition>new</g:condition>
-      <g:price>0.85 EUR</g:price>
-      <g:currency>EUR</g:currency>
-    </item>
-    <item>
-      <g:id>4740171179841</g:id>
-      <g:title>Delikatess seahakkliha 300g</g:title>
-      <g:google_product_category>Apparel &#38; Accessories &#62; Clothing &#62; Outerwear &#62; Coats &#38; Jackets</g:google_product_category>
-      <g:description>Delikatess seahakkliha 300g</g:description>
-      <g:link>https://www.prismamarket.ee/toode/delikatess-seahakkliha-300g/4740171179841</g:link>
-      <g:image_link>https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/5h52LMH5ae98yHwjJETORY.jpg</g:image_link>
-      <g:brand>Delikatess seahakkliha 300g</g:brand>
-      <g:availability>in stock</g:availability>
-      <g:condition>new</g:condition>
-      <g:price>2.53 EUR</g:price>
-      <g:currency>EUR</g:currency>
-    </item>
   </channel>
 </rss>
