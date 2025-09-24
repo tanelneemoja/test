@@ -5,19 +5,6 @@
     <link>https://www.prismamarket.ee</link>
     <description>Product feed for Prisma Market Estonia</description>
     <item>
-      <g:id>8410179100043</g:id>
-      <g:title>Borges Ekstra- väärisoliiviõli  750ml</g:title>
-      <g:google_product_category>Apparel &#38; Accessories &#62; Clothing &#62; Outerwear &#62; Coats &#38; Jackets</g:google_product_category>
-      <g:description>Borges Ekstra- väärisoliiviõli  750ml</g:description>
-      <g:link>https://www.prismamarket.ee/toode/borges-ekstra-vaarisoliivioli-750ml/8410179100043</g:link>
-      <g:image_link>https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/8LmUmltyK05ADw_J3b_ulv.jpg</g:image_link>
-      <g:brand>Borges Ekstra- väärisoliiviõli  750ml</g:brand>
-      <g:availability>in stock</g:availability>
-      <g:condition>new</g:condition>
-      <g:price>7.99 EUR</g:price>
-      <g:currency>EUR</g:currency>
-    </item>
-    <item>
       <g:id>2364001700009</g:id>
       <g:title>Tallegg Broilerifilee Jahutatud Kg</g:title>
       <g:google_product_category>Apparel &#38; Accessories &#62; Clothing &#62; Outerwear &#62; Coats &#38; Jackets</g:google_product_category>
@@ -27,7 +14,7 @@
       <g:brand>Tallegg Broilerifilee Jahutatud Kg</g:brand>
       <g:availability>in stock</g:availability>
       <g:condition>new</g:condition>
-      <g:price>3.50 EUR</g:price>
+      <g:price>2.50 EUR</g:price>
       <g:currency>EUR</g:currency>
     </item>
     <item>
@@ -40,7 +27,7 @@
       <g:brand>Mo Saaremaa Või 82%, 200 g</g:brand>
       <g:availability>in stock</g:availability>
       <g:condition>new</g:condition>
-      <g:price>2.09 EUR</g:price>
+      <g:price>2.78 EUR</g:price>
       <g:currency>EUR</g:currency>
     </item>
     <item>
@@ -53,7 +40,20 @@
       <g:brand>Luunja pikk kurk kiles Grüne Fee</g:brand>
       <g:availability>in stock</g:availability>
       <g:condition>new</g:condition>
-      <g:price>0.75 EUR</g:price>
+      <g:price>1.03 EUR</g:price>
+      <g:currency>EUR</g:currency>
+    </item>
+    <item>
+      <g:id>8410179100043</g:id>
+      <g:title>Borges Ekstra- väärisoliiviõli  750ml</g:title>
+      <g:google_product_category>Apparel &#38; Accessories &#62; Clothing &#62; Outerwear &#62; Coats &#38; Jackets</g:google_product_category>
+      <g:description>Borges Ekstra- väärisoliiviõli  750ml</g:description>
+      <g:link>https://www.prismamarket.ee/toode/borges-ekstra-vaarisoliivioli-750ml/8410179100043</g:link>
+      <g:image_link>https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/8LmUmltyK05ADw_J3b_ulv.jpg</g:image_link>
+      <g:brand>Borges Ekstra- väärisoliiviõli  750ml</g:brand>
+      <g:availability>in stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>7.99 EUR</g:price>
       <g:currency>EUR</g:currency>
     </item>
     <item>
