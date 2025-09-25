@@ -43,18 +43,5 @@
       <g:price>4.99 EUR</g:price>
       <g:currency>EUR</g:currency>
     </item>
-    <item>
-      <g:id>4740229011895</g:id>
-      <g:title>Dava Õrrekanade munad M, 10tk</g:title>
-      <g:google_product_category>Apparel &#38; Accessories &#62; Clothing &#62; Outerwear &#62; Coats &#38; Jackets</g:google_product_category>
-      <g:description>Dava Õrrekanade munad M, 10tk</g:description>
-      <g:link>https://www.prismamarket.ee/toode/dava-orrekanade-munad-m-10tk/4740229011895</g:link>
-      <g:image_link>https://cdn.s-cloud.fi/v1/w384_h384_q75/assets/dam-id/79h64ECjazGAFlV4H867wv.jpg</g:image_link>
-      <g:brand>Dava Õrrekanade munad M, 10tk</g:brand>
-      <g:availability>in stock</g:availability>
-      <g:condition>new</g:condition>
-      <g:price>1.89 EUR</g:price>
-      <g:currency>EUR</g:currency>
-    </item>
   </channel>
 </rss>
