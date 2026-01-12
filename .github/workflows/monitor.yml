@@ -1,0 +1,26 @@
+name: Indexing Monitor
+
+on:
+  push:
+    branches:
+      - main  # Runs every time you commit/push to the main branch
+  workflow_dispatch: # Allows you to run it manually from the "Actions" tab
+
+jobs:
+  check-indexing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          pip install requests beautifulsoup4 lxml
+
+      - name: Run Audit
+        run: python check_index.py
