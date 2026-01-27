@@ -31,19 +31,6 @@
       <g:currency>EUR</g:currency>
     </item>
     <item>
-      <g:id>2060322800007</g:id>
-      <g:title>Klementiin Tang Gold I klass</g:title>
-      <g:google_product_category>Apparel &#38; Accessories &#62; Clothing &#62; Outerwear &#62; Coats &#38; Jackets</g:google_product_category>
-      <g:description>Klementiin Tang Gold I klass</g:description>
-      <g:link>https://www.prismamarket.ee/toode/klementiin-tang-gold-i-klass/2060322800007</g:link>
-      <g:image_link>https://cdn.s-cloud.fi/v1/w280h280@_q75/assets/dam-id/2baLAIP34wgBcoTPpdHhSr.webp</g:image_link>
-      <g:brand>Klementiin Tang Gold I klass</g:brand>
-      <g:availability>in stock</g:availability>
-      <g:condition>new</g:condition>
-      <g:price>0.25 EUR</g:price>
-      <g:currency>EUR</g:currency>
-    </item>
-    <item>
       <g:id>8710908915420</g:id>
       <g:title>Knorr kiirnuudlid juustu- ja ürdimaitselised 61g</g:title>
       <g:google_product_category>Apparel &#38; Accessories &#62; Clothing &#62; Outerwear &#62; Coats &#38; Jackets</g:google_product_category>
@@ -93,6 +80,19 @@
       <g:availability>in stock</g:availability>
       <g:condition>new</g:condition>
       <g:price>0.65 EUR</g:price>
+      <g:currency>EUR</g:currency>
+    </item>
+    <item>
+      <g:id>2060322800007</g:id>
+      <g:title>Klementiin Tang Gold I klass</g:title>
+      <g:google_product_category>Apparel &#38; Accessories &#62; Clothing &#62; Outerwear &#62; Coats &#38; Jackets</g:google_product_category>
+      <g:description>Klementiin Tang Gold I klass</g:description>
+      <g:link>https://www.prismamarket.ee/toode/klementiin-tang-gold-i-klass/2060322800007</g:link>
+      <g:image_link>https://cdn.s-cloud.fi/v1/w280h280@_q75/assets/dam-id/2baLAIP34wgBcoTPpdHhSr.webp</g:image_link>
+      <g:brand>Klementiin Tang Gold I klass</g:brand>
+      <g:availability>in stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>0.25 EUR</g:price>
       <g:currency>EUR</g:currency>
     </item>
   </channel>
